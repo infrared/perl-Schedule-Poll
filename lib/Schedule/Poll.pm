@@ -228,6 +228,35 @@ sub which {
     return 0;
 }
 
+=head2 Examples
+
+    $href = {
+        a => 3,
+        b => 3,
+        c => 3
+    };
+
+    Timeline:
+        interval | 1  2  3  4  5  6  
+        ---------+------------------
+        key      | a  b  c  a  b  c
+
+
+    $href = {
+        a => 3,
+        b => 3,
+        c => 3,
+        d => 6,
+        e => 6,
+        f => 6
+    };
+
+    Timeline:
+        interval | 1  2  3  4  5  6  7  8  9  10  11  12 
+        ---------+--------------------------------------
+        key      | b  a  c  b  a  c  b  a  c  b   a   c
+                 | d     e     f     d     e      f
+
 
 =head1 AUTHOR
 
