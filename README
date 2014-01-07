@@ -1,0 +1,53 @@
+NAME
+    Schedule::Poll - Evenly schedule recurring events with various intervals
+
+VERSION
+    Version 0.01
+
+SYNOPSIS
+        use Schedule::Poll;
+
+        # Let's run a few things every 3 seconds,
+        # and some things every 6 seconds
+
+        my $config = {
+            foo => 3,
+            bar => 3,
+            baz => 3,
+            zip => 6,
+            zoo => 6,
+            zat => 6
+        };
+
+        my $poll = Schedule::Poll->new( $config );
+
+        while(1) {
+
+            if (my $aref =  $poll->which  ) {
+
+                for my $each (@$aref) {
+
+                    print "$each fired!\n";
+                }
+            }
+            sleep 1;
+        }
+
+METHODS
+  new
+    Constructor. Excepts a hashref with the values being an interval in
+    seconds. The interval should be a divisor of 86400.
+
+        my $href = {
+            foo => 300 # 5 minutes
+            bar => 600 # 10 minutes
+            baz => 5   # 5 seconds
+        };
+
+  which
+    Returns an arrary reference containing the items for that current tick
+    interval.
+
+AUTHOR
+    Michael Kroher, "<michael at kroher.net>"
+
